@@ -169,3 +169,83 @@ for i in range(len(item), 0, -1):
 print("Items Selected: ",it)
 
 *********************************************************************************************************************
+krushkals
+def get_weight(edge):return edge[2]
+
+def kruskal(graph):
+    edges = sorted(graph, key=get_weight)
+    parent = list(range(len(edges) + 1)) 
+    for edge in edges:
+        u, v, w = edge
+        pu, pv = parent[u], parent[v]
+        if pu != pv:
+            print(u,"-",v,":",w)
+            for i in range(len(parent)):
+                if parent[i] == pv:
+                    parent[i] = pu
+
+print("Edge : Weight")
+graph = [[0, 1, 2], [0, 3, 6], [1, 2, 3], [1, 4, 5], [2, 4, 7], [3, 4, 9]]
+kruskal(graph)
+
+-----------------------------------------------------------------------------------------------------------------------
+floyds
+
+MAX = 999999999999
+def print_matrix(matrix):
+for row in matrix:
+print(row)
+def get_distance(weight):
+d = weight
+n = len(weight)
+p = [[0] * n for _ in range(n)]
+for k in range(n):
+for i in range(n):
+20CS2018L – Design and Analysis of
+Algorithms Lab
+URK21CS7054
+for j in range(n):
+if d[i][j] > d[i][k] + d[k][j]:
+d[i][j] = d[i][k] + d[k][j]
+p[i][j] = k+1
+return d,p
+weight = [
+[0,4,5],
+[2,0,MAX],
+[MAX,-3,0]
+]
+distance,intermediate = get_distance(weight)
+print("Distance matrix: ")
+print_matrix(distance)
+print("Intermediate nodes : ")
+print_matrix(intermediate)
+----------------------------------------------------------------------------------------------------------------------
+prims
+
+def minimum(graph,vertices,current):
+selected = [current]
+total = 0
+for i in range(len(vertices) - 1): index =
+vertices.index(current)# print(index)
+j = graph[index]
+# print(f"j : {j}")
+data = list(filter(lambda x: x!= 0 andvertices[j.index(x)]
+not in selected, j))
+# print(f"data : {data}")
+# print(f"selected : {selected}")if len(data) > 0:
+k = min(data) smallest =
+j.index(k)
+# print(vertices[smallest])total += k
+print(f"{current} -> {vertices[smallest]} : {k}")current =
+vertices[smallest] selected.append(vertices[smallest])
+print(f"MST : {total}")
+graph = [
+[0,7,0,8,0,0],
+[7,0,6,3,0,0],
+[0,6,0,4,2,5],
+[8,3,4,0,3,0],
+[0,0,2,3,0,2],
+[0,5,0,2,0,0]
+]
+vertices = ['S','A','B','C','D','T']
+minimum(graph,vertices,current = "A")
